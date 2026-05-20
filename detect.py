@@ -1,4 +1,3 @@
-import os
 import sys
 
 import cv2
@@ -12,9 +11,9 @@ import numpy as np
 # ─────────────────────────────────────────────
 
 
-def preprocess(img):
+def preprocess_camera(img):
     """
-    Clean up a raw camera image:
+    Clean up the raw camera image:
     1. Grayscale
     2. Gaussian blur  → kills sensor noise
     3. CLAHE          → evens out glare / uneven lighting
@@ -22,12 +21,9 @@ def preprocess(img):
     5. Morphological open/close → remove leftover speckle
     """
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     equalized = clahe.apply(blurred)
-
     binary = cv2.adaptiveThreshold(
         equalized,
         255,
@@ -36,59 +32,24 @@ def preprocess(img):
         blockSize=11,
         C=2,
     )
-
     kernel = np.ones((3, 3), np.uint8)
     cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
     cleaned = cv2.morphologyEx(cleaned, cv2.MORPH_CLOSE, kernel)
-
     return cleaned
 
 
-def align(camera_binary, ground_truth_binary):
+def preprocess_groundtruth(img):
     """
-    Align the camera image to the ground truth using
-    ORB feature matching + homography (RANSAC).
-    Falls back to returning the original if alignment fails.
+    Ground truth is already clean black & white —
+    just convert to grayscale and threshold cleanly.
+    No need for CLAHE or heavy noise removal.
     """
-    orb = cv2.ORB_create(nfeatures=1000)
-
-    kp1, des1 = orb.detectAndCompute(camera_binary, None)
-    kp2, des2 = orb.detectAndCompute(ground_truth_binary, None)
-
-    if des1 is None or des2 is None or len(kp1) < 4 or len(kp2) < 4:
-        print("[WARN] Not enough features for alignment, skipping warp.")
-        return camera_binary
-
-    matcher = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-    matches = matcher.match(des1, des2)
-    matches = sorted(matches, key=lambda x: x.distance)
-
-    if len(matches) < 4:
-        print("[WARN] Not enough matches for homography, skipping warp.")
-        return camera_binary
-
-    # Use top matches
-    good = matches[:50]
-    src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
-    dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
-
-    H, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
-
-    if H is None:
-        print("[WARN] Homography failed, skipping warp.")
-        return camera_binary
-
-    h, w = ground_truth_binary.shape
-    aligned = cv2.warpPerspective(camera_binary, H, (w, h))
-    return aligned
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    return binary
 
 
 def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
-    """
-    Main detection function.
-    Loads both images, preprocesses, aligns, diffs, and
-    draws labelled bounding boxes for each defect found.
-    """
     cam_img = cv2.imread(camera_path)
     gt_img = cv2.imread(ground_truth_path)
 
@@ -99,23 +60,37 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
         print(f"[ERROR] Could not load ground truth image: {ground_truth_path}")
         sys.exit(1)
 
-    # Resize ground truth to match camera image size if needed
-    if cam_img.shape != gt_img.shape:
-        gt_img = cv2.resize(gt_img, (cam_img.shape[1], cam_img.shape[0]))
-
     print("[1/5] Preprocessing camera image...")
-    cam_binary = preprocess(cam_img)
+    cam_binary = preprocess_camera(cam_img)
 
     print("[2/5] Preprocessing ground truth...")
-    gt_binary = preprocess(gt_img)
+    gt_binary = preprocess_groundtruth(gt_img)
 
-    print("[3/5] Aligning images...")
-    aligned_cam = align(cam_binary, gt_binary)
+    # Resize to match if needed
+    if cam_binary.shape != gt_binary.shape:
+        gt_binary = cv2.resize(
+            gt_binary,
+            (cam_binary.shape[1], cam_binary.shape[0]),
+            interpolation=cv2.INTER_NEAREST,
+        )
+
+    print("[3/5] Aligning via translation correction...")
+    # Use phase correlation to find any minor shift between images
+    shift, _ = cv2.phaseCorrelate(np.float32(cam_binary), np.float32(gt_binary))
+    dx, dy = int(round(shift[0])), int(round(shift[1]))
+    # Only apply if shift is small (within 20px) — avoids bad corrections
+    if abs(dx) <= 20 and abs(dy) <= 20:
+        M = np.float32([[1, 0, dx], [0, 1, dy]])
+        h, w = cam_binary.shape
+        cam_binary = cv2.warpAffine(cam_binary, M, (w, h))
+        print(f"    Shift corrected: dx={dx}, dy={dy}")
+    else:
+        print(f"    Shift too large ({dx},{dy}), skipping correction.")
 
     print("[4/5] Computing difference map...")
-    diff = cv2.bitwise_xor(aligned_cam, gt_binary)
+    diff = cv2.bitwise_xor(cam_binary, gt_binary)
 
-    # Remove tiny noise regions (anything smaller than 100px area)
+    # Clean up tiny noise regions in the diff
     kernel = np.ones((5, 5), np.uint8)
     diff = cv2.morphologyEx(diff, cv2.MORPH_OPEN, kernel)
 
@@ -124,14 +99,17 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
         diff, connectivity=8
     )
 
-    # Draw results on a copy of the camera image
     result_img = cam_img.copy()
+    # Resize result to match cam if needed
+    if result_img.shape[:2] != (cam_binary.shape[0], cam_binary.shape[1]):
+        result_img = cv2.resize(result_img, (cam_binary.shape[1], cam_binary.shape[0]))
 
     defect_count = {"BREAK": 0, "SHORT": 0}
+    MIN_AREA = 300  # ignore regions smaller than this (px)
 
-    for i in range(1, num_labels):  # skip label 0 (background)
+    for i in range(1, num_labels):
         area = stats[i, cv2.CC_STAT_AREA]
-        if area < 100:  # ignore tiny artifacts
+        if area < MIN_AREA:
             continue
 
         x = stats[i, cv2.CC_STAT_LEFT]
@@ -139,26 +117,23 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
         w = stats[i, cv2.CC_STAT_WIDTH]
         h = stats[i, cv2.CC_STAT_HEIGHT]
 
-        # Sample the ground truth in this region to classify
+        # Check what ground truth says about this region
         region_gt = gt_binary[y : y + h, x : x + w]
         white_ratio = np.sum(region_gt == 255) / region_gt.size
 
         if white_ratio > 0.3:
-            # Ground truth says copper should be here but camera doesn't have it
             label = "BREAK"
             color = (0, 0, 255)  # Red
         else:
-            # Ground truth says background but camera shows copper
             label = "SHORT"
             color = (0, 165, 255)  # Orange
 
         defect_count[label] += 1
         cv2.rectangle(result_img, (x, y), (x + w, y + h), color, 2)
         cv2.putText(
-            result_img, label, (x, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2
+            result_img, label, (x, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.55, color, 2
         )
 
-    # Summary box in top-left
     summary = f"BREAKS: {defect_count['BREAK']}  SHORTS: {defect_count['SHORT']}"
     cv2.rectangle(result_img, (5, 5), (360, 35), (0, 0, 0), -1)
     cv2.putText(
@@ -171,7 +146,6 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
     )
     print(f"Output saved to: {output_path}")
 
-    # Also save the diff map for inspection
     diff_path = output_path.replace(".png", "_diffmap.png")
     cv2.imwrite(diff_path, diff)
     print(f"Diff map saved to: {diff_path}")
