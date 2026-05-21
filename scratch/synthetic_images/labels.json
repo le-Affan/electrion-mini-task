@@ -1,0 +1,2038 @@
+{
+    "cam_000.png": {
+        "filename": "cam_000.png",
+        "gt_filename": "gt_000.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_001.png": {
+        "filename": "cam_001.png",
+        "gt_filename": "gt_001.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    289,
+                    308,
+                    25,
+                    14
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    222,
+                    283,
+                    15,
+                    17
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_002.png": {
+        "filename": "cam_002.png",
+        "gt_filename": "gt_002.png",
+        "defect_type": "SHORT",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_003.png": {
+        "filename": "cam_003.png",
+        "gt_filename": "gt_003.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    290,
+                    320,
+                    19,
+                    11
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    91,
+                    166,
+                    22,
+                    8
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_004.png": {
+        "filename": "cam_004.png",
+        "gt_filename": "gt_004.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_005.png": {
+        "filename": "cam_005.png",
+        "gt_filename": "gt_005.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    136,
+                    203,
+                    13,
+                    17
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_006.png": {
+        "filename": "cam_006.png",
+        "gt_filename": "gt_006.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    266,
+                    219,
+                    9,
+                    27
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_007.png": {
+        "filename": "cam_007.png",
+        "gt_filename": "gt_007.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    157,
+                    233,
+                    17,
+                    13
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    182,
+                    351,
+                    9,
+                    17
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_008.png": {
+        "filename": "cam_008.png",
+        "gt_filename": "gt_008.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_009.png": {
+        "filename": "cam_009.png",
+        "gt_filename": "gt_009.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    166,
+                    348,
+                    13,
+                    17
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    194,
+                    335,
+                    13,
+                    27
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_010.png": {
+        "filename": "cam_010.png",
+        "gt_filename": "gt_010.png",
+        "defect_type": "SHORT",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    152,
+                    286,
+                    26,
+                    12
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    27,
+                    202,
+                    13,
+                    7
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_011.png": {
+        "filename": "cam_011.png",
+        "gt_filename": "gt_011.png",
+        "defect_type": "COMBINED",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    380,
+                    208,
+                    15,
+                    27
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_012.png": {
+        "filename": "cam_012.png",
+        "gt_filename": "gt_012.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_013.png": {
+        "filename": "cam_013.png",
+        "gt_filename": "gt_013.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    296,
+                    173,
+                    27,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_014.png": {
+        "filename": "cam_014.png",
+        "gt_filename": "gt_014.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    210,
+                    98,
+                    9,
+                    13
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_015.png": {
+        "filename": "cam_015.png",
+        "gt_filename": "gt_015.png",
+        "defect_type": "COMBINED",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    96,
+                    303,
+                    21,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_016.png": {
+        "filename": "cam_016.png",
+        "gt_filename": "gt_016.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_017.png": {
+        "filename": "cam_017.png",
+        "gt_filename": "gt_017.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    115,
+                    94,
+                    13,
+                    21
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_018.png": {
+        "filename": "cam_018.png",
+        "gt_filename": "gt_018.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    177,
+                    84,
+                    25,
+                    12
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_019.png": {
+        "filename": "cam_019.png",
+        "gt_filename": "gt_019.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    188,
+                    136,
+                    9,
+                    21
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    85,
+                    66,
+                    9,
+                    18
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_020.png": {
+        "filename": "cam_020.png",
+        "gt_filename": "gt_020.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_021.png": {
+        "filename": "cam_021.png",
+        "gt_filename": "gt_021.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    264,
+                    240,
+                    14,
+                    25
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    265,
+                    218,
+                    21,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_022.png": {
+        "filename": "cam_022.png",
+        "gt_filename": "gt_022.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    135,
+                    242,
+                    9,
+                    14
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_023.png": {
+        "filename": "cam_023.png",
+        "gt_filename": "gt_023.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    326,
+                    289,
+                    9,
+                    17
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    296,
+                    176,
+                    4,
+                    13
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_024.png": {
+        "filename": "cam_024.png",
+        "gt_filename": "gt_024.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_025.png": {
+        "filename": "cam_025.png",
+        "gt_filename": "gt_025.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    330,
+                    137,
+                    11,
+                    17
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_026.png": {
+        "filename": "cam_026.png",
+        "gt_filename": "gt_026.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    331,
+                    186,
+                    16,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_027.png": {
+        "filename": "cam_027.png",
+        "gt_filename": "gt_027.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    151,
+                    175,
+                    13,
+                    27
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    362,
+                    298,
+                    26,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_028.png": {
+        "filename": "cam_028.png",
+        "gt_filename": "gt_028.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_029.png": {
+        "filename": "cam_029.png",
+        "gt_filename": "gt_029.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    278,
+                    207,
+                    14,
+                    17
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    164,
+                    87,
+                    21,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_030.png": {
+        "filename": "cam_030.png",
+        "gt_filename": "gt_030.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    405,
+                    148,
+                    12,
+                    7
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_031.png": {
+        "filename": "cam_031.png",
+        "gt_filename": "gt_031.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    314,
+                    251,
+                    21,
+                    15
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    273,
+                    165,
+                    22,
+                    7
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_032.png": {
+        "filename": "cam_032.png",
+        "gt_filename": "gt_032.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_033.png": {
+        "filename": "cam_033.png",
+        "gt_filename": "gt_033.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    228,
+                    316,
+                    10,
+                    24
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_034.png": {
+        "filename": "cam_034.png",
+        "gt_filename": "gt_034.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    78,
+                    145,
+                    30,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_035.png": {
+        "filename": "cam_035.png",
+        "gt_filename": "gt_035.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    156,
+                    139,
+                    14,
+                    23
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    173,
+                    191,
+                    9,
+                    21
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_036.png": {
+        "filename": "cam_036.png",
+        "gt_filename": "gt_036.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_037.png": {
+        "filename": "cam_037.png",
+        "gt_filename": "gt_037.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    302,
+                    147,
+                    25,
+                    13
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    322,
+                    110,
+                    9,
+                    17
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_038.png": {
+        "filename": "cam_038.png",
+        "gt_filename": "gt_038.png",
+        "defect_type": "SHORT",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    329,
+                    300,
+                    22,
+                    7
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    314,
+                    142,
+                    3,
+                    8
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_039.png": {
+        "filename": "cam_039.png",
+        "gt_filename": "gt_039.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    142,
+                    103,
+                    19,
+                    13
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    99,
+                    211,
+                    13,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_040.png": {
+        "filename": "cam_040.png",
+        "gt_filename": "gt_040.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_041.png": {
+        "filename": "cam_041.png",
+        "gt_filename": "gt_041.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    50,
+                    292,
+                    15,
+                    25
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    201,
+                    168,
+                    15,
+                    23
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_042.png": {
+        "filename": "cam_042.png",
+        "gt_filename": "gt_042.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    210,
+                    268,
+                    18,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_043.png": {
+        "filename": "cam_043.png",
+        "gt_filename": "gt_043.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    199,
+                    169,
+                    23,
+                    11
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    45,
+                    329,
+                    13,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_044.png": {
+        "filename": "cam_044.png",
+        "gt_filename": "gt_044.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_045.png": {
+        "filename": "cam_045.png",
+        "gt_filename": "gt_045.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    231,
+                    214,
+                    11,
+                    19
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_046.png": {
+        "filename": "cam_046.png",
+        "gt_filename": "gt_046.png",
+        "defect_type": "SHORT",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    316,
+                    365,
+                    11,
+                    23
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    339,
+                    323,
+                    9,
+                    14
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_047.png": {
+        "filename": "cam_047.png",
+        "gt_filename": "gt_047.png",
+        "defect_type": "COMBINED",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    80,
+                    165,
+                    13,
+                    27
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_048.png": {
+        "filename": "cam_048.png",
+        "gt_filename": "gt_048.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_049.png": {
+        "filename": "cam_049.png",
+        "gt_filename": "gt_049.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    239,
+                    265,
+                    25,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_050.png": {
+        "filename": "cam_050.png",
+        "gt_filename": "gt_050.png",
+        "defect_type": "SHORT",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    89,
+                    291,
+                    7,
+                    25
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    243,
+                    162,
+                    9,
+                    19
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_051.png": {
+        "filename": "cam_051.png",
+        "gt_filename": "gt_051.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    166,
+                    34,
+                    27,
+                    16
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    108,
+                    251,
+                    10,
+                    25
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_052.png": {
+        "filename": "cam_052.png",
+        "gt_filename": "gt_052.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_053.png": {
+        "filename": "cam_053.png",
+        "gt_filename": "gt_053.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    263,
+                    108,
+                    35,
+                    27
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_054.png": {
+        "filename": "cam_054.png",
+        "gt_filename": "gt_054.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    307,
+                    249,
+                    9,
+                    16
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_055.png": {
+        "filename": "cam_055.png",
+        "gt_filename": "gt_055.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    310,
+                    137,
+                    19,
+                    15
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    117,
+                    224,
+                    5,
+                    25
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_056.png": {
+        "filename": "cam_056.png",
+        "gt_filename": "gt_056.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_057.png": {
+        "filename": "cam_057.png",
+        "gt_filename": "gt_057.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    131,
+                    264,
+                    27,
+                    12
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_058.png": {
+        "filename": "cam_058.png",
+        "gt_filename": "gt_058.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    195,
+                    196,
+                    16,
+                    5
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_059.png": {
+        "filename": "cam_059.png",
+        "gt_filename": "gt_059.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    263,
+                    154,
+                    21,
+                    9
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    248,
+                    375,
+                    9,
+                    19
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_060.png": {
+        "filename": "cam_060.png",
+        "gt_filename": "gt_060.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_061.png": {
+        "filename": "cam_061.png",
+        "gt_filename": "gt_061.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    336,
+                    120,
+                    15,
+                    27
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_062.png": {
+        "filename": "cam_062.png",
+        "gt_filename": "gt_062.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    273,
+                    131,
+                    14,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_063.png": {
+        "filename": "cam_063.png",
+        "gt_filename": "gt_063.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    113,
+                    208,
+                    27,
+                    11
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    195,
+                    222,
+                    11,
+                    19
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_064.png": {
+        "filename": "cam_064.png",
+        "gt_filename": "gt_064.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_065.png": {
+        "filename": "cam_065.png",
+        "gt_filename": "gt_065.png",
+        "defect_type": "BREAK",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    364,
+                    77,
+                    11,
+                    17
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_066.png": {
+        "filename": "cam_066.png",
+        "gt_filename": "gt_066.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    165,
+                    299,
+                    7,
+                    18
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_067.png": {
+        "filename": "cam_067.png",
+        "gt_filename": "gt_067.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    113,
+                    317,
+                    27,
+                    11
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    264,
+                    329,
+                    9,
+                    26
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_068.png": {
+        "filename": "cam_068.png",
+        "gt_filename": "gt_068.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_069.png": {
+        "filename": "cam_069.png",
+        "gt_filename": "gt_069.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    226,
+                    114,
+                    15,
+                    19
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    204,
+                    75,
+                    27,
+                    12
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_070.png": {
+        "filename": "cam_070.png",
+        "gt_filename": "gt_070.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    184,
+                    112,
+                    9,
+                    21
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_071.png": {
+        "filename": "cam_071.png",
+        "gt_filename": "gt_071.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    146,
+                    204,
+                    15,
+                    23
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    329,
+                    206,
+                    14,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_072.png": {
+        "filename": "cam_072.png",
+        "gt_filename": "gt_072.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_073.png": {
+        "filename": "cam_073.png",
+        "gt_filename": "gt_073.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    137,
+                    276,
+                    21,
+                    11
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    181,
+                    51,
+                    17,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_074.png": {
+        "filename": "cam_074.png",
+        "gt_filename": "gt_074.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    267,
+                    95,
+                    13,
+                    6
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_075.png": {
+        "filename": "cam_075.png",
+        "gt_filename": "gt_075.png",
+        "defect_type": "COMBINED",
+        "defect_count": 3,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    175,
+                    95,
+                    27,
+                    11
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    214,
+                    132,
+                    5,
+                    9
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    193,
+                    131,
+                    7,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_076.png": {
+        "filename": "cam_076.png",
+        "gt_filename": "gt_076.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_077.png": {
+        "filename": "cam_077.png",
+        "gt_filename": "gt_077.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    348,
+                    215,
+                    9,
+                    21
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    237,
+                    101,
+                    17,
+                    13
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_078.png": {
+        "filename": "cam_078.png",
+        "gt_filename": "gt_078.png",
+        "defect_type": "SHORT",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    162,
+                    349,
+                    9,
+                    24
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    164,
+                    293,
+                    11,
+                    15
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_079.png": {
+        "filename": "cam_079.png",
+        "gt_filename": "gt_079.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    176,
+                    238,
+                    17,
+                    11
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    360,
+                    224,
+                    24,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_080.png": {
+        "filename": "cam_080.png",
+        "gt_filename": "gt_080.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_081.png": {
+        "filename": "cam_081.png",
+        "gt_filename": "gt_081.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    89,
+                    251,
+                    15,
+                    19
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    175,
+                    84,
+                    17,
+                    13
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_082.png": {
+        "filename": "cam_082.png",
+        "gt_filename": "gt_082.png",
+        "defect_type": "SHORT",
+        "defect_count": 3,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    102,
+                    266,
+                    21,
+                    9
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    305,
+                    140,
+                    9,
+                    4
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    304,
+                    116,
+                    11,
+                    13
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_083.png": {
+        "filename": "cam_083.png",
+        "gt_filename": "gt_083.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    349,
+                    235,
+                    13,
+                    17
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    329,
+                    274,
+                    20,
+                    5
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_084.png": {
+        "filename": "cam_084.png",
+        "gt_filename": "gt_084.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_085.png": {
+        "filename": "cam_085.png",
+        "gt_filename": "gt_085.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    276,
+                    259,
+                    27,
+                    14
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    254,
+                    230,
+                    11,
+                    19
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_086.png": {
+        "filename": "cam_086.png",
+        "gt_filename": "gt_086.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    136,
+                    52,
+                    9,
+                    23
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_087.png": {
+        "filename": "cam_087.png",
+        "gt_filename": "gt_087.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    207,
+                    114,
+                    21,
+                    15
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    279,
+                    90,
+                    12,
+                    23
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_088.png": {
+        "filename": "cam_088.png",
+        "gt_filename": "gt_088.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_089.png": {
+        "filename": "cam_089.png",
+        "gt_filename": "gt_089.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    212,
+                    200,
+                    9,
+                    19
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    257,
+                    88,
+                    23,
+                    11
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_090.png": {
+        "filename": "cam_090.png",
+        "gt_filename": "gt_090.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    118,
+                    154,
+                    9,
+                    26
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_091.png": {
+        "filename": "cam_091.png",
+        "gt_filename": "gt_091.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    180,
+                    38,
+                    23,
+                    9
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    186,
+                    329,
+                    14,
+                    9
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_092.png": {
+        "filename": "cam_092.png",
+        "gt_filename": "gt_092.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_093.png": {
+        "filename": "cam_093.png",
+        "gt_filename": "gt_093.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    95,
+                    299,
+                    15,
+                    23
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    328,
+                    103,
+                    27,
+                    16
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_094.png": {
+        "filename": "cam_094.png",
+        "gt_filename": "gt_094.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    100,
+                    161,
+                    20,
+                    7
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_095.png": {
+        "filename": "cam_095.png",
+        "gt_filename": "gt_095.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    154,
+                    137,
+                    9,
+                    19
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    140,
+                    183,
+                    15,
+                    3
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_096.png": {
+        "filename": "cam_096.png",
+        "gt_filename": "gt_096.png",
+        "defect_type": "CLEAN",
+        "defect_count": 0,
+        "defects": [],
+        "is_clean": true,
+        "is_faulty": false
+    },
+    "cam_097.png": {
+        "filename": "cam_097.png",
+        "gt_filename": "gt_097.png",
+        "defect_type": "BREAK",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    156,
+                    294,
+                    23,
+                    11
+                ]
+            },
+            {
+                "type": "BREAK",
+                "bbox": [
+                    298,
+                    204,
+                    13,
+                    19
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_098.png": {
+        "filename": "cam_098.png",
+        "gt_filename": "gt_098.png",
+        "defect_type": "SHORT",
+        "defect_count": 1,
+        "defects": [
+            {
+                "type": "SHORT",
+                "bbox": [
+                    118,
+                    304,
+                    13,
+                    7
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    },
+    "cam_099.png": {
+        "filename": "cam_099.png",
+        "gt_filename": "gt_099.png",
+        "defect_type": "COMBINED",
+        "defect_count": 2,
+        "defects": [
+            {
+                "type": "BREAK",
+                "bbox": [
+                    165,
+                    198,
+                    13,
+                    21
+                ]
+            },
+            {
+                "type": "SHORT",
+                "bbox": [
+                    152,
+                    278,
+                    14,
+                    7
+                ]
+            }
+        ],
+        "is_clean": false,
+        "is_faulty": true
+    }
+}
