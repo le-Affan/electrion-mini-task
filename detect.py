@@ -13,39 +13,49 @@ import numpy as np
 
 def preprocess_camera(img):
     """
-    Clean up the raw camera image:
-    1. Grayscale
-    2. Gaussian blur  → kills sensor noise
-    3. CLAHE          → evens out glare / uneven lighting
-    4. Adaptive threshold → clean binary image
-    5. Morphological open/close → remove leftover speckle
+    Clean up the raw camera image.
+    Copper traces should come out WHITE, background BLACK.
     """
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+
+    # Blur to kill sensor noise
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+
+    # CLAHE to even out glare across the board
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
     equalized = clahe.apply(blurred)
-    binary = cv2.adaptiveThreshold(
-        equalized,
-        255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY,
-        blockSize=11,
-        C=2,
-    )
+
+    # Otsu thresholding — automatically finds the best global threshold
+    # Works better than adaptive here because CLAHE already evened brightness
+    _, binary = cv2.threshold(equalized, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    # Sanity check: copper should be the minority (traces are thinner than background)
+    # If white pixels > 60% of image, we've got it inverted — flip it
+    white_ratio = np.sum(binary == 255) / binary.size
+    if white_ratio > 0.6:
+        binary = cv2.bitwise_not(binary)
+
+    # Clean up noise
     kernel = np.ones((3, 3), np.uint8)
     cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
     cleaned = cv2.morphologyEx(cleaned, cv2.MORPH_CLOSE, kernel)
+
     return cleaned
 
 
 def preprocess_groundtruth(img):
     """
-    Ground truth is already clean black & white —
-    just convert to grayscale and threshold cleanly.
-    No need for CLAHE or heavy noise removal.
+    Ground truth is already clean — just threshold it.
+    Make sure copper = WHITE.
     """
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+
+    # Same sanity check
+    white_ratio = np.sum(binary == 255) / binary.size
+    if white_ratio > 0.6:
+        binary = cv2.bitwise_not(binary)
+
     return binary
 
 
@@ -57,7 +67,7 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
         print(f"[ERROR] Could not load camera image: {camera_path}")
         sys.exit(1)
     if gt_img is None:
-        print(f"[ERROR] Could not load ground truth image: {ground_truth_path}")
+        print(f"[ERROR] Could not load ground truth: {ground_truth_path}")
         sys.exit(1)
 
     print("[1/5] Preprocessing camera image...")
@@ -66,7 +76,7 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
     print("[2/5] Preprocessing ground truth...")
     gt_binary = preprocess_groundtruth(gt_img)
 
-    # Resize to match if needed
+    # Resize to match
     if cam_binary.shape != gt_binary.shape:
         gt_binary = cv2.resize(
             gt_binary,
@@ -74,23 +84,19 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
             interpolation=cv2.INTER_NEAREST,
         )
 
-    print("[3/5] Aligning via translation correction...")
-    # Use phase correlation to find any minor shift between images
+    print("[3/5] Aligning via phase correlation...")
     shift, _ = cv2.phaseCorrelate(np.float32(cam_binary), np.float32(gt_binary))
     dx, dy = int(round(shift[0])), int(round(shift[1]))
-    # Only apply if shift is small (within 20px) — avoids bad corrections
     if abs(dx) <= 20 and abs(dy) <= 20:
         M = np.float32([[1, 0, dx], [0, 1, dy]])
         h, w = cam_binary.shape
         cam_binary = cv2.warpAffine(cam_binary, M, (w, h))
         print(f"    Shift corrected: dx={dx}, dy={dy}")
     else:
-        print(f"    Shift too large ({dx},{dy}), skipping correction.")
+        print(f"    Shift too large ({dx},{dy}), skipping.")
 
     print("[4/5] Computing difference map...")
     diff = cv2.bitwise_xor(cam_binary, gt_binary)
-
-    # Clean up tiny noise regions in the diff
     kernel = np.ones((5, 5), np.uint8)
     diff = cv2.morphologyEx(diff, cv2.MORPH_OPEN, kernel)
 
@@ -99,13 +105,9 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
         diff, connectivity=8
     )
 
-    result_img = cam_img.copy()
-    # Resize result to match cam if needed
-    if result_img.shape[:2] != (cam_binary.shape[0], cam_binary.shape[1]):
-        result_img = cv2.resize(result_img, (cam_binary.shape[1], cam_binary.shape[0]))
-
+    result_img = cv2.resize(cam_img.copy(), (cam_binary.shape[1], cam_binary.shape[0]))
     defect_count = {"BREAK": 0, "SHORT": 0}
-    MIN_AREA = 300  # ignore regions smaller than this (px)
+    MIN_AREA = 300
 
     for i in range(1, num_labels):
         area = stats[i, cv2.CC_STAT_AREA]
@@ -117,16 +119,15 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
         w = stats[i, cv2.CC_STAT_WIDTH]
         h = stats[i, cv2.CC_STAT_HEIGHT]
 
-        # Check what ground truth says about this region
         region_gt = gt_binary[y : y + h, x : x + w]
         white_ratio = np.sum(region_gt == 255) / region_gt.size
 
         if white_ratio > 0.3:
             label = "BREAK"
-            color = (0, 0, 255)  # Red
+            color = (0, 0, 255)
         else:
             label = "SHORT"
-            color = (0, 165, 255)  # Orange
+            color = (0, 165, 255)
 
         defect_count[label] += 1
         cv2.rectangle(result_img, (x, y), (x + w, y + h), color, 2)
@@ -149,6 +150,11 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
     diff_path = output_path.replace(".png", "_diffmap.png")
     cv2.imwrite(diff_path, diff)
     print(f"Diff map saved to: {diff_path}")
+
+    # Also save preprocessed images for debugging
+    cv2.imwrite(output_path.replace(".png", "_cam_binary.png"), cam_binary)
+    cv2.imwrite(output_path.replace(".png", "_gt_binary.png"), gt_binary)
+    print("Debug images saved (cam_binary, gt_binary)")
 
 
 if __name__ == "__main__":
