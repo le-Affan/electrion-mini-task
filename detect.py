@@ -13,29 +13,49 @@ import numpy as np
 
 def preprocess_camera(img):
     """
-    Clean up the raw camera image.
-    Copper traces should come out WHITE, background BLACK.
+    Approach: divide the image into zones based on brightness,
+    apply different thresholds per zone, then combine.
+
+    The core issue is severe lighting gradient — center is ~3x
+    brighter than corners. A single threshold (even Otsu) fails
+    across such a range. We split into bright/dark zones and
+    threshold each independently, then merge.
     """
+    b_ch, g_ch, r_ch = cv2.split(img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Blur to kill sensor noise
-    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+    # ── Step 1: Build copper signal (R - G) ─────────────────────────
+    # Copper: high R, low G → large positive difference
+    # Glare:  high R, high G → difference near zero
+    # Background: low R, low G → near zero
+    r_f = r_ch.astype(np.float32)
+    g_f = g_ch.astype(np.float32)
+    copper_signal = np.clip(r_f - g_f, 0, 255).astype(np.uint8)
+    copper_signal = cv2.GaussianBlur(copper_signal, (5, 5), 0)
 
-    # CLAHE to even out glare across the board
-    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
-    equalized = clahe.apply(blurred)
+    # ── Step 2: Zone-based thresholding ─────────────────────────────
+    # Blur gray heavily to get a smooth brightness map (the "zone" map)
+    brightness_map = cv2.GaussianBlur(gray, (101, 101), 0).astype(np.float32)
+    brightness_map = np.clip(brightness_map, 1, 255)  # avoid div by zero
 
-    # Otsu thresholding — automatically finds the best global threshold
-    # Works better than adaptive here because CLAHE already evened brightness
-    _, binary = cv2.threshold(equalized, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Normalize copper signal by local brightness
+    # This compensates for the lighting gradient across the board
+    copper_norm = copper_signal.astype(np.float32) / brightness_map * 128
+    copper_norm = np.clip(copper_norm, 0, 255).astype(np.uint8)
 
-    # Sanity check: copper should be the minority (traces are thinner than background)
-    # If white pixels > 60% of image, we've got it inverted — flip it
-    white_ratio = np.sum(binary == 255) / binary.size
-    if white_ratio > 0.6:
-        binary = cv2.bitwise_not(binary)
+    # Now threshold the normalized signal — Otsu works well on uniform signal
+    _, binary = cv2.threshold(copper_norm, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
-    # Clean up noise
+    # ── Step 3: Mask out hard glare hotspots ────────────────────────
+    # Any pixel where ALL channels are very high is pure glare, not copper
+    glare_mask = (
+        (r_ch.astype(np.int32) + g_ch.astype(np.int32) + b_ch.astype(np.int32)) > 600
+    ).astype(np.uint8) * 255
+    glare_kernel = np.ones((13, 13), np.uint8)
+    glare_mask = cv2.dilate(glare_mask, glare_kernel)
+    binary[glare_mask == 255] = 0
+
+    # ── Step 4: Morphological cleanup ───────────────────────────────
     kernel = np.ones((3, 3), np.uint8)
     cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
     cleaned = cv2.morphologyEx(cleaned, cv2.MORPH_CLOSE, kernel)
@@ -44,18 +64,10 @@ def preprocess_camera(img):
 
 
 def preprocess_groundtruth(img):
-    """
-    Ground truth is already clean — just threshold it.
-    Make sure copper = WHITE.
-    """
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
-
-    # Same sanity check
-    white_ratio = np.sum(binary == 255) / binary.size
-    if white_ratio > 0.6:
+    if np.sum(binary == 255) / binary.size > 0.6:
         binary = cv2.bitwise_not(binary)
-
     return binary
 
 
@@ -76,7 +88,6 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
     print("[2/5] Preprocessing ground truth...")
     gt_binary = preprocess_groundtruth(gt_img)
 
-    # Resize to match
     if cam_binary.shape != gt_binary.shape:
         gt_binary = cv2.resize(
             gt_binary,
@@ -145,16 +156,11 @@ def detect_faults(camera_path, ground_truth_path, output_path="output.png"):
     print(
         f"\nDone. Detected: {defect_count['BREAK']} break(s), {defect_count['SHORT']} short(s)"
     )
-    print(f"Output saved to: {output_path}")
 
-    diff_path = output_path.replace(".png", "_diffmap.png")
-    cv2.imwrite(diff_path, diff)
-    print(f"Diff map saved to: {diff_path}")
-
-    # Also save preprocessed images for debugging
+    cv2.imwrite(output_path.replace(".png", "_diffmap.png"), diff)
     cv2.imwrite(output_path.replace(".png", "_cam_binary.png"), cam_binary)
     cv2.imwrite(output_path.replace(".png", "_gt_binary.png"), gt_binary)
-    print("Debug images saved (cam_binary, gt_binary)")
+    print("Debug images saved.")
 
 
 if __name__ == "__main__":
@@ -162,11 +168,8 @@ if __name__ == "__main__":
         print(
             "Usage: python detect.py <camera_image> <ground_truth_image> [output_image]"
         )
-        print("Example: python detect.py camera.png ground_truth.png result.png")
         sys.exit(1)
 
-    camera_path = sys.argv[1]
-    ground_truth_path = sys.argv[2]
-    output_path = sys.argv[3] if len(sys.argv) > 3 else "output.png"
-
-    detect_faults(camera_path, ground_truth_path, output_path)
+    detect_faults(
+        sys.argv[1], sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "output.png"
+    )
