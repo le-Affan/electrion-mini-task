@@ -1,22 +1,22 @@
 # PCB Fault Detection System
 
-An automated visual inspection and defect detection pipeline for Printed Circuit Boards (PCBs). The system aligns camera-captured board images to an ideal reference layout using a rotation-robust coarse-to-fine distance transform search, then detects and classifies trace defects (breaks and shorts) with high precision.
+An automated visual inspection and defect detection pipeline for Printed Circuit Boards (PCBs).
 
 ---
 
-## 📂 Repository Directory Layout
+## Repository Directory Layout
 
-The repository is organized cleanly, keeping all input, output, and temporary debug files separated from the core source code. Below is the explanation of each folder and file in the root directory:
+Below is the explanation of each folder and file in the root directory
 
 ```text
 .
-├── debug/                      # Intermediate pipeline images (for troubleshooting)
+├── debug/                      # Intermediate pipeline images for troubleshooting
 │   ├── result_cam_binary.png   # Preprocessed camera binary trace mask
 │   ├── result_diffmap.png      # Morphological XOR difference map (mismatches)
 │   └── result_gt_binary.png    # Preprocessed ground truth binary trace mask
 │
 ├── inputs/                     # Reference input images for testing
-│   ├── camera.png              # Test camera-captured image (with glare, noise, rotation)
+│   ├── camera.png              # Test camera-captured image with glare, noise, rotation
 │   └── ground_truth.png        # Ideal reference PCB Gerber layout
 │
 ├── outputs/                    # Final annotated output images
@@ -40,7 +40,7 @@ The repository is organized cleanly, keeping all input, output, and temporary de
 
 ---
 
-## 🔍 File and Folder Details
+## File and Folder Details
 
 ### Directories
 
@@ -60,7 +60,7 @@ The repository is organized cleanly, keeping all input, output, and temporary de
 
 ---
 
-## 🚀 How to Run the Pipeline
+## How to Run the Pipeline
 
 ### 1. Install Dependencies
 Make sure you have Python 3 and the necessary libraries installed:
